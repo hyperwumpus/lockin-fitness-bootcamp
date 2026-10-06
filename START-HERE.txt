@@ -1,0 +1,45 @@
+LOCK//IN - ready to track locally
+
+Open http://127.0.0.1:8080/ while the local server is running.
+Refresh your existing tab after these changes.
+Later, double-click Start-Lockin.cmd and leave that window open.
+The launcher uses Python on PATH. Install Python 3.9 or later if needed.
+On another computer with Python 3.9+, run: python server.py
+
+TODAY: your next mission and XP.
+TRAIN: choose program start date once. BAMF Builder weeks 1-8 are loaded.
+Record actual weight and reps/time for each set; tick Done.
+Fields save when you leave the field. Training history is in STATS.
+Blank prescriptions from the PDF are explicitly marked unspecified.
+The original A/B routines have been replaced by the loaded BAMF program.
+Extra calisthenics/Ninja/Genji sessions are not yet programmed.
+
+FUEL: repetitive morning shake/banana, chicken/rice/frozen vegetables for
+lunch and dinner, yogurt/fruit snack. Swap to tilapia, your tuna/corn/mayo
+bowl, frozen meal plus extra cooked chicken, or bar/fruit when desired.
+This is an editable starter menu; a current calorie target has not been set.
+LOG THIS MEAL records the selected foods. Portion multiplier scales them.
+Generic values are visibly marked ESTIMATE.
+For reusable foods, tap the food, verify the package values and amount,
+and SAVE FOOD VALUES once. Recipes use those saved portions thereafter.
+BUILT Puff examples require missing label macros before meal logging.
+Scan your specific flavor/package rather than assuming all bars match.
+Chips, chocolate, popcorn and watermelon are included as optional entries.
+Frozen meal bag serving sizes vary: follow the label and log the amount eaten.
+
+STATS: workout sets, weigh-ins, ranks, and downloadable JSON backups.
+Data stays in this browser/device. Download backups regularly.
+Restore keeps the previous browser state in lockin-before-restore.
+No cloud sync or automatic phone notifications have been added.
+CONTENT retains the original simple story feed.
+
+SOURCES
+Current GitHub source: https://github.com/hyperwumpus/lockin-fitness
+Workouts: your supplied BAMF Builder.pdf.
+Meal base: recovered Warrior_Autopilot_Fitness_Plan.docx, plus your preferences
+in this chat. Previous calorie/protein targets were not re-prescribed.
+BUILT example calories/protein: https://built.com/products/salted-caramel-puff
+All remaining starter food values are generic estimates, not exact labels.
+
+Verification: server HTTP responses, JS syntax, and app logic checks.
+Visual browser verification was blocked by the browser automation policy.

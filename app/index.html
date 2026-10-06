@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>LOCK//IN SYSTEM</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="scanline"></div>
+<header>
+  <div>
+    <div class="eyebrow">PERSONAL SYSTEM // READY TO TRACK</div>
+    <h1>LOCK//IN</h1>
+  </div>
+  <div class="rank"><span id="rankName">E-RANK</span><strong id="level">LV 1</strong></div>
+</header>
+
+<nav>
+  <button class="nav active" data-view="today">TODAY</button>
+  <button class="nav" data-view="train">TRAIN</button>
+  <button class="nav" data-view="fuel">FUEL</button>
+  <button class="nav" data-view="progress">STATS</button>
+  <button class="nav" data-view="content">CONTENT</button>
+</nav>
+
+<main>
+<section id="today" class="view active">
+  <div class="hero card">
+    <div>
+      <div class="eyebrow">DAILY QUEST</div>
+      <h2>REBUILD THE WARRIOR</h2>
+      <p>Execute the mission. Your next step, already planned. Show up, record it, build momentum.</p>
+    </div>
+    <div class="xp-ring"><span id="xpToday">0</span><small>XP TODAY</small></div>
+  </div>
+  <div class="grid two">
+    <div class="card">
+      <h3>QUEST STATUS</h3>
+      <div id="questList"></div>
+    </div>
+    <div class="card danger-card">
+      <h3>PENALTY VAULT</h3>
+      <div class="vault-count"><span id="vaultCount">0</span> PACKS AT RISK</div>
+      <p class="muted">A failed required mission can forfeit a sealed Pokémon pack. Physical penalties stay challenging but non-injurious.</p>
+      <button id="failMission" class="danger">FAIL A REQUIRED MISSION</button>
+    </div>
+  </div>
+  <div class="card">
+    <h3>SYSTEM DIRECTIVE</h3>
+    <div id="directive" class="directive"></div>
+  </div>
+</section>
+
+<section id="train" class="view">
+  <div class="card">
+    <div class="row spread"><div><div class="eyebrow">BODY MISSION</div><h2 id="workoutTitle">FULL BODY A</h2></div><button id="toggleWorkout" class="ghost hidden">SWITCH A/B</button></div>
+    <div class="form-grid"><label>Program start<input id="programStart" type="date" /></label><label>Week<select id="programWeek"></select></label><label>Training day<select id="programDay"></select></label></div><p id="programNote" class="muted"></p><div id="exerciseList"></div><div id="sessionStatus" role="status" aria-live="polite"></div>
+    <div class="timer card inset">
+      <span class="eyebrow">REST TIMER</span>
+      <strong id="timerDisplay">01:30</strong>
+      <div class="row"><button id="startTimer">START 90S</button><button id="resetTimer" class="ghost">RESET</button></div>
+    </div>
+  </div>
+  <div class="card">
+    <h3>BACKUP PROTOCOL</h3>
+    <p><strong>Plan A:</strong> Hart Gym. <strong>Plan B:</strong> home substitutions. <strong>Minimum Mission:</strong> 3 rounds — 10 squats, 5–10 push-ups, 10 DB rows/side, 10 reverse lunges total, 20-sec plank.</p>
+    <button id="completeWorkout">COMPLETE TRAINING +150 XP</button>
+  </div>
+</section>
+
+<section id="fuel" class="view">
+  <div class="card">
+    <div class="row spread"><div><div class="eyebrow">NUTRITION MISSION</div><h2>SIMPLE DAILY MEALS</h2></div><div class="protein"><span id="proteinTotal">0</span>g</div></div>
+    <div id="mealList"></div>
+    <p class="muted">Same simple menu each day. Lunch and dinner default to chicken, rice, and frozen vegetables. Swap only when you want to. Nutrition estimates vary by brand; scan your packages or save label values once.</p>
+  </div>
+  <div class="card">
+    <h3>FOOD LOG <small id="foodDate"></small></h3>
+    <div class="macro-grid">
+      <div><strong id="calorieTotal">0</strong><small>KCAL</small></div>
+      <div><strong id="proteinMacro">0</strong><small>PROTEIN G</small></div>
+      <div><strong id="carbTotal">0</strong><small>CARBS G</small></div>
+      <div><strong id="fatTotal">0</strong><small>FAT G</small></div>
+    </div>
+    <div id="foodEntries" class="history"></div>
+  </div>
+  <div class="card">
+    <h3>SCAN OR ENTER BARCODE</h3>
+    <div class="row"><input id="barcodeInput" inputmode="numeric" autocomplete="off" placeholder="8–14 digit barcode" aria-label="Food barcode" /><button id="lookupBarcode">LOOK UP</button><button id="openScanner" class="ghost">CAMERA</button></div>
+    <p id="lookupStatus" class="muted" role="status" aria-live="polite">Food details come from <a href="https://world.openfoodfacts.org/" target="_blank" rel="noopener noreferrer">Open Food Facts</a>. Check labels before logging.</p>
+    <div id="scannerPanel" class="hidden"><video id="scannerVideo" autoplay playsinline muted></video><button id="closeScanner" class="ghost">STOP CAMERA</button></div>
+  </div>
+  <div class="card">
+    <h3>LOG FOOD</h3>
+    <p id="foodSource" class="muted">Enter food manually or look up a barcode above.</p>
+    <form id="foodForm">
+      <div class="form-grid">
+        <label>Food name<input id="foodName" required maxlength="100" placeholder="e.g., Greek yogurt" /></label>
+        <label>Meal<select id="foodMeal"><option>Breakfast</option><option>Lunch</option><option>Dinner</option><option>Snack</option></select></label>
+        <label>Amount (g or ml)<input id="foodAmount" type="number" min="1" max="10000" step="0.1" value="100" required /></label>
+        <label>Calories per 100 g/ml<input id="foodCalories" type="number" min="0" max="10000" step="0.1" required /></label>
+        <label>Protein per 100 g/ml<input id="foodProtein" type="number" min="0" max="1000" step="0.1" required /></label>
+        <label>Carbs per 100 g/ml<input id="foodCarbs" type="number" min="0" max="1000" step="0.1" required /></label>
+        <label>Fat per 100 g/ml<input id="foodFat" type="number" min="0" max="1000" step="0.1" required /></label>
+      </div>
+      <p class="muted">Values are per 100 g/ml; the amount scales them. Edit any missing or inaccurate label values.</p>
+      <button type="submit">ADD TO TODAY</button><button type="button" id="saveFoodValues" class="ghost">SAVE FOOD VALUES</button><button type="button" id="clearFood" class="ghost">CLEAR FORM</button>
+    </form>
+  </div>
+  <div class="card"><h3>YOUR SHOPPING LIST</h3><div id="shoppingList"></div></div><div class="card"><h3>REUSABLE FOODS</h3><div id="quickFoods"></div><p class="muted">Tap an item to prefill the food form, then verify your label and amount. Estimates are marked in your log.</p></div><div class="card"><h3>SWEET / CRUNCHY OPTIONS</h3><p>BUILT Puff, watermelon, yogurt and fruit, popcorn, or a measured portion of chips or chocolate. Use the reusable foods to log it. Then return to your usual meal routine.</p></div>
+</section>
+
+<section id="progress" class="view">
+  <div class="grid three stats">
+    <div class="card"><span class="eyebrow">WEIGHT</span><strong id="weightDisplay">190.0</strong><small>LB</small></div>
+    <div class="card"><span class="eyebrow">STREAK</span><strong id="streakDisplay">0</strong><small>DAYS</small></div>
+    <div class="card"><span class="eyebrow">TOTAL XP</span><strong id="totalXP">0</strong><small>XP</small></div>
+  </div>
+  <div class="card">
+    <h3>LOG WEIGHT</h3>
+    <div class="row"><input id="weightInput" type="number" step="0.1" placeholder="190.0" /><button id="logWeight">SAVE</button></div>
+    <div id="weightHistory" class="history"></div>
+  </div>
+  <div class="card"><h3>TRAINING HISTORY</h3><div id="trainingHistory"></div></div><div class="card"><h3>BACK UP YOUR DATA</h3><p class="muted">Saved in this browser. Export a backup to keep a copy outside it.</p><button id="exportData">DOWNLOAD BACKUP</button><label class="import-label">Restore backup<input id="importData" type="file" accept="application/json" /></label><p id="backupStatus" role="status"></p></div><div class="card"><h3>SKILL TREE — LOCKED FOR PHASE 1</h3><div class="skill-grid"><div>Pull-Up<br><span>BASE BUILDING</span></div><div>Handstand<br><span>BASE BUILDING</span></div><div>L-Sit<br><span>BASE BUILDING</span></div><div>Pistol Squat<br><span>BASE BUILDING</span></div><div>Sprint<br><span>BASE BUILDING</span></div><div>Agility<br><span>BASE BUILDING</span></div></div></div>
+</section>
+
+<section id="content" class="view">
+  <div class="card"><div class="eyebrow">CONTENT ENGINE</div><h2>THE SYSTEM IS THE SERIES</h2><p>Every meaningful event becomes a possible clip, short, episode beat, or weekly update.</p><button id="addSideQuest">ADD SIDE QUEST</button></div>
+  <div class="card"><h3>CAPTURE FEED</h3><div id="contentFeed"></div></div>
+</section>
+</main>
+
+<div id="systemModal" class="modal hidden"><div class="modal-card"><div class="eyebrow">SYSTEM NOTIFICATION</div><h2 id="modalTitle">QUEST UPDATED</h2><p id="modalText"></p><button id="closeModal">ACKNOWLEDGE</button></div></div>
+<script src="program.js"></script>
+<script src="app.js"></script>
+<script src="ready.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.env
+.env.*
+work/
+*-backup-*.json
+lockin-before-restore*

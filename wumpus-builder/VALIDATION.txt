@@ -1,0 +1,10 @@
+VALIDATION
+
+Passed: engine scheduling, source-preserved prescriptions, lb/kg conversion, program validation, rejection of malformed backups, escaped user content, and all five page render functions in all three editions.
+Passed: event-handler checks for set changes, meal portions, missing food labels, storage write failures, archive/new run, backup creation, and public premium-import preview.
+Passed: HTTP 200 for all app scripts, CSS, images, manifest and pitch page on ports 8081, 8082 and 8083. Manifest MIME verified. Invalid barcode 400 verified.
+Passed: deterministic server API tests for successful products, missing products (404), and network timeout (502), using stubbed responses.
+
+These are functional checks using a lightweight DOM harness, not full browser visual verification. No live external barcode result, real-device camera permission, mobile install flow, or calendar import was tested. There is no live checkout, authentication or cloud persistence to test.
+
+Run from this folder with Node: node check-builder.cjs
